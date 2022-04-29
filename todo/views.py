@@ -12,7 +12,13 @@ def workers(request):
 def worker_del(request, worker_id):
     worker_to_del = Worker.objects.get(id=worker_id)
     worker_to_del.delete()
-    return HttpResponseRedirect('')
+    return HttpResponseRedirect('/')
+
+
+def worker_details(request, worker_id):
+    worker = Worker.objects.get(id=worker_id)
+    return render(request, 'todo/worker_details.html', {'worker': worker})
+
 
 
 def todo(request):
@@ -26,13 +32,12 @@ def todo(request):
 
 def addTodo(request):
     new = Task(content=request.POST['content'], owner_id= request.POST['worker_id'])
-    print(new)
-    new.save()
-    return HttpResponseRedirect('')
+    if len(request.POST['content']) > 2:
+        new.save()
+    return HttpResponseRedirect('/')
 
 
-def deleteTodo(request, todo_id):
-    item_to_del = Task.objects.get(id=todo_id)
-    print(item_to_del)
+def deleteTodo(request, task_id):
+    item_to_del = Task.objects.get(id=task_id)
     item_to_del.delete()
-    return HttpResponseRedirect('')
+    return HttpResponseRedirect('/')

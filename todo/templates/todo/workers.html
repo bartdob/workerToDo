@@ -18,9 +18,10 @@
                         <div class="col-10 mt-2">
                             {{ worker.surname }}
                             {{ worker.forename }}
+                            <a href=""> details </a>
                         </div>
                         <div class="col-2 mt-2 text-right">
-                            <form action="/todo/deleteTodo/{{todo_item.id}}/"
+                            <form action="worker_del/{{worker.id}}/"
                                     method="POST">{% csrf_token %}
                                     <button type="submit" value="del" class="bg-danger">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor">
