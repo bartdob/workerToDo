@@ -16,9 +16,10 @@
                 <li class="ml-2">
                     <div class="row bg-light mt-3 ml-2 w-50 border border-warning">
                         <div class="col-10 mt-2">
-                            {{ worker.surname }}
-                            {{ worker.forename }}
-                            <a href=""> details </a>
+                            sN: {{ worker.surname }}
+                            fN: {{ worker.forename }}
+                            {{worker.id}}
+                            <a href="{% url 'worker_details' %}"> details </a>
                         </div>
                         <div class="col-2 mt-2 text-right">
                             <form action="worker_del/{{worker.id}}/"
