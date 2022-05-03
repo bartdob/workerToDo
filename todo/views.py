@@ -17,8 +17,21 @@ def worker_del(request, worker_id):
 
 def worker_details(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
-    return render(request, 'todo/worker_details.html', {'worker': worker})
+    tasks = Task.objects.all(id=worker_id)
+    return render(request, 'todo/worker_details.html', {'worker': worker, 'tasks': tasks})
 
+
+def addWorker(request):
+    new = Worker(
+        forename=request.POST['forename'],
+        surname=request.POST['surname'],
+        age=request.POST['age'],
+        content=request.POST['content'],
+
+    )
+    if len(request.POST['forename'] and request.POST['surname']) > 2:
+        new.save()
+    return HttpResponseRedirect('/')
 
 
 def todo(request):

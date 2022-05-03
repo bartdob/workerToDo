@@ -8,9 +8,20 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 <html>
-<body>
+<head>
 
-<p> worker_id </p>
+</head>
+<body>
+<div class="container">
+    <p> worker {{worker.forename}} {{worker.surname}}</p>
+    <p> worker id  {{worker.id}} </p>
+    <p> worker tasks:
+        {%for task in tasks%}
+
+        {%endfor%}
+    </p>
+</div>
+
 
 </body>
 </html>

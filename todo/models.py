@@ -6,7 +6,7 @@ from django.utils import timezone
 class Worker(models.Model):
     forename = models.CharField(max_length=80)
     surname = models.CharField(max_length=80)
-    date_od_birth = models.DateField(default=None)
+    date_od_birth = models.DateField(null=True)
     age = models.IntegerField(default=None)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)

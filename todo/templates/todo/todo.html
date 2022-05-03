@@ -22,13 +22,47 @@
                     </a>
                 </div>
 
-    <div class="container mt-5">
-            <ol class="list-group list-group-numbered ml-2 mt-2 justify-content-between">
+        <div class="text-right border mt-2">
+                    <h3 class="text-white text-center">add new task</h3>
+                    <div class="container mt-1 mb-2" style="margin-left: auto">
+                    <form method="POST" action="addTodo/new/" class="form-inline">{% csrf_token %}
+                        <input type="text" class="w-50 form-control" placeholder="add task min 3 marks" name="content">
+                        <select class="w-25 form-control" placeholder="STATUS" name="status">
+                            <option value="">--Please choose a Status--</option>
+                            <option value="FRESH">FRESH</option>
+                            <option value="InProgress">InProgress</option>
+                            <option value="DONE">DONE</option>
+                        </select>
+
+                        <select class="w-25 form-control" placeholder="DONE" name="done">
+                            <option value="">--TASK DONE?--</option>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                        </select>
+
+                        <select name="worker_id" required="True">
+                            <option value="">--Please choose a worker to task--</option>
+                            {% for worker in all_workers  %}
+                            <option value="{{worker.id}}">{{worker.surname}} {{worker.forename}}</option>
+                             {% endfor %}
+                        </select>
+
+                        <button type="submit" class="btn btn-success">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                              </svg>
+                        </button>
+                    </form>
+                    </div>
+                </div>
+
+    <div class="container mt-5 justify-content-between">
+            <ol class="list-group list-group-numbered ml-2 mt-2">
                 {% for todo_item in all_items %}
-                <li class="list-group-item rounded d-flex mt-3 justify-content-between" style="border: 2px solid #a2bb07; background-color: #dbceb0;">
-                    <div class="row w-75 pt-1 d-flex justify-content-between">
-                        <div class="col-10 ml-2 pl-2 d-flex justify-content-between">
-                             <strong>{{todo_item.content}}</strong> {{todo_item.date}} <a href=""> {{todo_item.owner}} </a>
+                <li class="list-group-item rounded d-flex mt-3" style="border: 2px solid #a2bb07; background-color: #dbceb0;">
+                    <div class="row w-100 pt-1 d-flex">
+                        <div class="col-10 d-flex justify-content-around">
+                             <div class="text-left"><strong>{{todo_item.content}}</strong></div> {{todo_item.date}} <a href=""> {{todo_item.owner}} </a>
                         </div>
                         <div class="col-2 mt-2 text-right d-flex">
                             <form action="deleteTodo/{{todo_item.id}}/"
@@ -45,24 +79,7 @@
                 </li>
                 {% endfor %}
             </ol>
-                <div class="container mx-auto text-center mt-5">
-                    <form method="POST" action="addTodo/new/" class="form-inline">{% csrf_token %}
-                        <input type="text" class="w-75 form-control" placeholder="add task min 3 marks" name="content">
-                        <select name="worker_id" required="True">
-                            <option value="">--Please choose a worker to task--</option>
-                            {% for worker in all_workers  %}
-                            <option value="{{worker.id}}">{{worker.surname}} {{worker.forename}}</option>
-                             {% endfor %}
-                        </select>
-
-                        <button type="submit" class="btn btn-success">
-                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor">
-                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                              </svg>
-                        </button>
-                    </form>
                 </div>
-
             </div>
         </div>
 </body>

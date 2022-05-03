@@ -19,7 +19,7 @@
                             sN: {{ worker.surname }}
                             fN: {{ worker.forename }}
                             {{worker.id}}
-                            <a href="{% url 'worker_details' %}"> details </a>
+<!--                            <a href="#"> details </a>-->
                         </div>
                         <div class="col-2 mt-2 text-right">
                             <form action="worker_del/{{worker.id}}/"
@@ -36,6 +36,23 @@
                 </li>
                 {% endfor %}
             </ol>
+
+
+             <div class="container mx-auto text-center mt-5">
+                 <h2>Add new Worker</h2>
+                    <form method="POST" action="addWorker/new/" class="form-inline">{% csrf_token %}
+                        <input type="text" class="w-75 form-control" placeholder="forename" name="forename">
+                        <input type="text" class="w-75 form-control" placeholder="surname" name="surname">
+                        <input type="text" class="w-75 form-control" placeholder="age" name="age">
+                        <input type="text" class="w-75 form-control" placeholder="content" name="content">
+
+                        <button type="submit" class="btn btn-success"> Add worker
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                              </svg>
+                        </button>
+                    </form>
+                </div>
 </div>
 </body>
 </html>
