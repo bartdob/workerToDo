@@ -1,17 +1,13 @@
-FROM python:3.8
-
-ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app
-
-COPY requirements.txt ./
-
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["python", "manage.py", "runserver"]
+# syntax=docker/do
+FROM python:3     
+ENV PYTHONDONTWRIT
+ENV PYTHONUNBUFFER
+WORKDIR /code     
+COPY requirements.
+RUN pip install --
+RUN pip install ba
+RUN pip install -r
+COPY . /code/     
 
 
 
