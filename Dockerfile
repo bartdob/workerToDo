@@ -1,11 +1,18 @@
+FROM python:3.8
 
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+ENV PYTHONUNBUFFERED=1
 
-# set path to our python api file
-ENV MODULE_NAME="rgapi.server"
+WORKDIR /code
 
-# copy contents of project into docker
-COPY ./ /app
+COPY requirements.txt .
 
-# install poetry
 RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ("python", "manage.py", "runserver")
+
+
+
