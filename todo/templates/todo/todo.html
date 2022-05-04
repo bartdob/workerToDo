@@ -1,5 +1,5 @@
 {# Load the tag library #}
-{% load static %}}
+{% load static %}
 {% load bootstrap5 %}
 
 {# Load CSS and JavaScript #}
@@ -16,10 +16,12 @@
 <body style="background-color: #a2bb07;">
     <div class="container border border-warning-2 mt-2 bg-secondary rounded">
                 <div class="container mx-auto border border-warning-3 mt-2 p-2 rounded">
-                    <p class="text-center text-white fw-bolder">WORKERS TASK LIST</p>
-                    <a href="{% url 'all_workers' %}"><p class="text-center text-white"
-                    >ALL WORKERS</p>
+                    <h2 class="text-center text-white fw-bolder">WORKERS TASK LIST</h2>
+                    <div class="text-center">
+                    <a href="{% url 'all_workers' %}" class="text-white text-center">
+                        SHOW ALL WORKERS/ADD NEW WORKER
                     </a>
+                    </div>
                 </div>
 
         <div class="text-right border mt-2">
@@ -57,12 +59,13 @@
                 </div>
 
     <div class="container mt-5 justify-content-between">
+        <h2 class="text-center text-white fw-bolder">TASK LIST</h2>
             <ol class="list-group list-group-numbered ml-2 mt-2">
                 {% for todo_item in all_items %}
                 <li class="list-group-item rounded d-flex mt-3" style="border: 2px solid #a2bb07; background-color: #dbceb0;">
                     <div class="row w-100 pt-1 d-flex">
                         <div class="col-10 d-flex justify-content-around">
-                             <div class="text-left"><strong>{{todo_item.content}}</strong></div> {{todo_item.date}} <a href=""> {{todo_item.owner}} </a>
+                            <div class="text-left"><strong>{{todo_item.content}}</strong></div> {{todo_item.date|date:"M d, Y"}} <strong>s: {{todo_item.status}} {{todo_item.done}}</strong>  <a href="workers/details/{{todo_item.owner.id}}"> {{todo_item.owner}} </a>
                         </div>
                         <div class="col-2 mt-2 text-right d-flex">
                             <form action="deleteTodo/{{todo_item.id}}/"

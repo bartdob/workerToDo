@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'bootstrap5',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Task, Worker
 from django.http import HttpResponseRedirect
+from .filters import TaskFilter
 
 
 def workers(request):
@@ -17,8 +18,11 @@ def worker_del(request, worker_id):
 
 def worker_details(request, worker_id):
     worker = Worker.objects.get(id=worker_id)
-    tasks = Task.objects.all(id=worker_id)
-    return render(request, 'todo/worker_details.html', {'worker': worker, 'tasks': tasks})
+    tasks = worker.task_set.all()
+    myFilter = TaskFilter(request.GET, queryset=tasks)
+    tasks = myFilter.qs
+    context = {'worker': worker,'tasks': tasks, 'myFilter': myFilter}
+    return render(request, 'todo/worker_details.html', context)
 
 
 def addWorker(request):

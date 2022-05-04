@@ -16,7 +16,7 @@ class Worker(models.Model):
 
 
 class Task(models.Model):
-    TASK_STATUS = [('FR', 'FRESH'), ('IP', 'InPROGRESS'), ('DONE', 'DONE')]
+    TASK_STATUS = [('FRESH', 'FRESH'), ('InProg', 'InProg'), ('DONE', 'DONE')]
     owner = models.ForeignKey(Worker, on_delete=models.CASCADE)
     content = models.TextField()
     done = models.BooleanField(default=False)
