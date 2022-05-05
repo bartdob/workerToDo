@@ -6,5 +6,3 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         fields = ['id', 'content', 'status', 'date', 'done']
-
-

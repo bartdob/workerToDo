@@ -21,7 +21,7 @@ def worker_details(request, worker_id):
     tasks = worker.task_set.all()
     myFilter = TaskFilter(request.GET, queryset=tasks)
     tasks = myFilter.qs
-    context = {'worker': worker,'tasks': tasks, 'myFilter': myFilter}
+    context = {'worker': worker, 'tasks': tasks, 'myFilter': myFilter}
     return render(request, 'todo/worker_details.html', context)
 
 
@@ -44,11 +44,11 @@ def todo(request):
 
     print(Task.objects.all())
 
-    return render(request, 'todo/todo.html', {'all_items': all_todo_items, 'all_workers': all_workers,})
+    return render(request, 'todo/todo.html', {'all_items': all_todo_items, 'all_workers': all_workers})
 
 
 def addTodo(request):
-    new = Task(content=request.POST['content'], owner_id= request.POST['worker_id'])
+    new = Task(content=request.POST['content'], owner_id=request.POST['worker_id'])
     if len(request.POST['content']) > 2:
         new.save()
     return HttpResponseRedirect('/')
