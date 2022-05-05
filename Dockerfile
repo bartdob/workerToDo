@@ -1,13 +1,10 @@
-# syntax=docker/do
-FROM python:3     
-ENV PYTHONDONTWRIT
-ENV PYTHONUNBUFFER
+FROM python:3.9
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 WORKDIR /code     
-COPY requirements.
-RUN pip install --
-RUN pip install ba
-RUN pip install -r
-COPY . /code/     
+COPY requirements.txt /code/
+RUN pip install -r requirements.txt
+COPY . /code/
 
 
 
